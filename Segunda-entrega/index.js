@@ -1,5 +1,6 @@
 const contenedor = document.getElementById("contenedor")
 const boton = document.getElementById("boton")
+const boton2 = document.getElementById("boton2")
 
 let productos = [
     {
@@ -13,10 +14,28 @@ let productos = [
         nombre: "Auriculares",
         precio: 3500,
         imagen: "https://www.sony.com.ar/image/5d02da5df552836db894cead8a68f5f3?fmt=pjpeg&wid=330&bgcolor=FFFFFF&bgc=FFFFFF"
+    },
+    {
+        id: 3,
+        nombre: "Mouse",
+        precio: 4000,
+        imagen: "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/accessories/wireless-mouse-gt/imgs/pc/huawei-wireless-mouse-gt-kv.jpg"
+    },
+    {
+        id: 4,
+        nombre: "Pad",
+        precio: 1000,
+        imagen: "https://http2.mlstatic.com/D_NQ_NP_619601-MLA31097571219_062019-O.jpg"
     }
 ]
 
 let carrito = []
+
+let carritoStorage = JSON.parse(localStorage.getItem("carrito"));
+
+if(carritoStorage){
+    carrito = carritoStorage;
+}
 
 productos.forEach(producto =>{
     let productoRenderizado = document.createElement("contenedor")
@@ -35,9 +54,17 @@ productos.forEach(producto =>{
     boton.addEventListener("click",() => comprarProducto(producto))
 })
 
+
 const comprarProducto = (producto) => {
     carrito.push(producto.nombre)
 }
 
 boton.addEventListener("click", () => alert(carrito))
+
+boton2.addEventListener("click", () => {
+    localStorage.clear();
+    carrito.innerHTML = "";
+    carrito.length = 0;
+    alert("productos borrados");
+})
 
