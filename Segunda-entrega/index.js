@@ -51,20 +51,24 @@ productos.forEach(producto =>{
     `
     contenedor.append(productoRenderizado)
     const boton = document.getElementById(producto.id)
-    boton.addEventListener("click",() => comprarProducto(producto))
-})
+    boton.addEventListener("click",() => comprarProducto(producto));
+});
 
 
 const comprarProducto = (producto) => {
     carrito.push(producto.nombre)
 }
 
-boton.addEventListener("click", () => alert(carrito))
+boton.addEventListener("click", () => alert(carrito)) 
 
 boton2.addEventListener("click", () => {
     localStorage.clear();
     carrito.innerHTML = "";
     carrito.length = 0;
-    alert("productos borrados");
+    swal({
+        icon: "success",
+        text: "Carrito borrado",
+    });
 })
 
+/* alert("productos borrados"); */
