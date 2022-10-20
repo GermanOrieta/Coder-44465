@@ -71,4 +71,17 @@ boton2.addEventListener("click", () => {
     });
 })
 
-/* alert("productos borrados"); */
+fetch("./data.json")
+.then(response => response.json())
+.then(data => {
+    data.forEach(producto => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+        <h2>${producto.nombre}</h2>
+        <p>${producto.precio}</p>
+        <p>${producto.id}</p>
+        <hr/>
+    `;
+    listado.append(li);
+    });
+})
